@@ -30,7 +30,9 @@ class CreateUsersTable extends Migration
      * @return void
      */
     public function down()
-    {
-        Schema::dropIfExists('users');
+    {   
+        Schema::dropIfExists('users', function (Blueprint $table) {
+            $table->dropForeign('tasks_user_id_foreign');
+        });
     }
 }
